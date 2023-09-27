@@ -66,6 +66,12 @@ const App = () => {
     }
   }
 
+  function handleClickPrev() {
+    if (slide > 0) {
+      setSlide(slide - 1);
+    } 
+  }
+
   return (
     <form onSubmit={(event) => event.preventDefault()}>
       {perguntas.map((pergunta, index) => (
@@ -80,7 +86,10 @@ const App = () => {
       {resultado ? (
         <p>{resultado}</p>
       ) : (
-        <button onClick={handleClick}>Próxima</button>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <button onClick={handleClickPrev} disabled={slide === 0} >Anterior</button>
+          <button onClick={handleClick} style={{ marginLeft: '1rem'}}>Próxima</button>
+        </div>
       )}
     </form>
   );
